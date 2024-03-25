@@ -1,6 +1,4 @@
 
-### IAM Role Template (IAMRole.yaml):
-```yaml
 AWSTemplateFormatVersion: '2010-09-09'
 Description: "IAM Role with Full Access"
 
@@ -24,5 +22,4 @@ Resources:
               - Effect: 'Allow'
                 Action: '*'
                 Resource: '*'
-```
 
