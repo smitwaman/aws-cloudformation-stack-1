@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "EC2 Instance running Jenkins Server"
+
+Parameters:
+  SubnetId:
+    Type: 'AWS::EC2::Subnet::Id'
+
+  SecurityGroupId:
+    Type: 'AWS::EC2::SecurityGroup::Id'
+
+Resources:
+  JenkinsEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: 't2.micro'
+      ImageId: 'ami-12345678' # Replace with your desired AMI ID
+      SubnetId: !Ref SubnetId
+      SecurityGroupIds:
+        - !Ref SecurityGroupId
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          yum update -y
+          yum install -y java
+          # Install Jenkins
+          wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+          rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+          yum install -y jenkins
+          service jenkins start
+          chkconfig jenkins on
