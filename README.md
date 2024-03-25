@@ -4,7 +4,7 @@ Here we are building AWS resources using AWS cloudformation service.
 
 Process we will follow is that
 
-1. In first step we will clone repository in local system.
+1. We will clone repository in local system.
 2. Login to AWS console. Search and navigate to Cloudformation service.
 3. Here we will create stack for S3 bucket using S3.yaml template.
 4. After creation of bucket we will upload all templates to bucket or we can use them from local system also.
